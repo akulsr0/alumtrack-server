@@ -1,10 +1,16 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
 
+// @route GET /api/auth/
+// @desc Get current user
+// @access Private
 const getCurrentUser = async (req: Request, res: Response) => {
-  // res.send('GET CURRENT USER HERE');
+  // TODO: Get Current User
 };
 
+// @route POST /api/auth/
+// @desc Register a new user
+// @access Public
 const registerUser = async (req: Request, res: Response) => {
   try {
     const { firstname, lastname, username, gender, email, password } = req.body;
@@ -19,13 +25,15 @@ const registerUser = async (req: Request, res: Response) => {
     await user.save();
     res.json(user);
   } catch (error) {
-    console.log(error.message);
     res.json({ msg: error.message });
   }
 };
 
+// @route POST /api/auth/login
+// @desc Login Existing User
+// @access Public
 const loginUser = (req: Request, res: Response) => {
-  res.send('LOGIN USER HERE');
+  // TODO: Login User
 };
 
 export { getCurrentUser, registerUser, loginUser };
