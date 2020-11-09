@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth/', require('./routes/api/auth'));
+app.use('/api/user/', require('./routes/api/user'));
 
 app.listen(port, () => {
   console.log(`Server started running at port ${port}`);
