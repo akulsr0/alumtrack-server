@@ -1,13 +1,16 @@
 import { Request, Response } from 'express';
 import validator from 'validator';
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../utils/index';
 import User from '../models/User';
 
 // @route GET /api/auth/
 // @desc Get current user
 // @access Private
 const getCurrentUser = async (req: Request, res: Response) => {
-  // TODO: Get Current User
+  const { id } = req.body.user;
+  const user = await User.findById(id).select('-password');
+  res.json({ user });
 };
 
 // @route POST /api/auth/
@@ -52,7 +55,7 @@ const loginUser = async (req: Request, res: Response) => {
     }
     const authResult = await user.validatePassword(password);
     if (authResult) {
-      const token = await jwt.sign({ id: user.id }, 'secret', {
+      const token = await jwt.sign({ id: user.id }, JWT_SECRET, {
         expiresIn: '10 days',
       });
       return res.json({ message: 'Login Successfull', token, success: true });
