@@ -5,6 +5,10 @@ interface IUser extends Document {
   lastname?: string;
   fullname: string;
   username: string;
+  photo?: string;
+  phone?: number;
+  bio?: string;
+  isPhoneVerified: boolean;
   password: string;
   gender: string;
   joined: Date;

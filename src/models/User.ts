@@ -16,6 +16,19 @@ const userSchema: Schema = new Schema({
     unique: true,
     lowercase: true,
   },
+  photo: {
+    type: String,
+  },
+  phone: {
+    type: Number,
+  },
+  isPhoneVerified: {
+    type: Boolean,
+    default: false,
+  },
+  bio: {
+    type: String,
+  },
   email: {
     type: String,
     required: true,
