@@ -1,4 +1,4 @@
-import { Schema, model, Model } from 'mongoose';
+import { Schema, model, Model, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import IUser from '../interfaces/IUser';
 
@@ -43,6 +43,7 @@ const userSchema: Schema = new Schema({
     enum: ['Male', 'Female', 'Other'],
     required: true,
   },
+  projects: [{ type: Types.ObjectId, ref: 'project' }],
   joined: {
     type: Date,
     default: new Date(),

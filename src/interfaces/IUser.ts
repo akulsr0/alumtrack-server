@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+import IProject from './IProject';
 
 interface IUser extends Document {
   firstname: string;
@@ -11,6 +12,7 @@ interface IUser extends Document {
   isPhoneVerified: boolean;
   password: string;
   gender: string;
+  projects: Array<IProject>;
   joined: Date;
   validatePassword(plainPass: string): boolean;
   getDateString(date: Date): string;
