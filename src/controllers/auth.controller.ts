@@ -18,7 +18,15 @@ const getCurrentUser = async (req: Request, res: Response) => {
 // @access Public
 const registerUser = async (req: Request, res: Response) => {
   try {
-    const { firstname, lastname, username, gender, email, password } = req.body;
+    const {
+      firstname,
+      lastname,
+      username,
+      gender,
+      email,
+      password,
+      phone,
+    } = req.body;
     const user = new User({
       firstname,
       lastname,
@@ -26,6 +34,7 @@ const registerUser = async (req: Request, res: Response) => {
       gender,
       email,
       password,
+      phone,
     });
     await user.save();
     res.json({ message: 'User Registered', user, success: true });
