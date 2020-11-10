@@ -8,11 +8,11 @@ import {
 } from '../../controllers/auth.controller';
 
 // Middlewares
-import { auth } from '../../middlewares/auth.middleware';
+import { authCookie } from '../../middlewares/auth.middleware';
 
 const router: Router = Router();
 
-router.route('/').get(auth, getCurrentUser).post(registerUser);
+router.route('/').get(authCookie, getCurrentUser).post(registerUser);
 router.route('/login').post(loginUser);
 
 module.exports = router;
