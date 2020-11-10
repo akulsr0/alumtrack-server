@@ -14,6 +14,11 @@ interface IUser extends Document {
   gender: string;
   projects: Array<IProject>;
   joined: Date;
+  connections: {
+    requests_received: Array<string>;
+    requests_sent: Array<string>;
+    users: Array<string>;
+  };
   validatePassword(plainPass: string): boolean;
   getDateString(date: Date): string;
 }
