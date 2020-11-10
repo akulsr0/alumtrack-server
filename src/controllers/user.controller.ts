@@ -7,6 +7,22 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = Twilio(accountSid, authToken);
 
+// @route  GET /api/user/:userid
+// @desc  Get User's data from their user id
+// @access Public
+const getUserData = async (req: Request, res: Response) => {
+  try {
+    const { userid } = req.params;
+    const user = await User.findById(userid);
+    if (user) {
+      return res.json({ user, success: true });
+    }
+    res.json({ message: 'User not found', success: false });
+  } catch (error) {
+    res.json({ message: error.message, success: false });
+  }
+};
+
 // @route GET /api/user/verify/phone/
 // @desc Get verification code from server and send to user phone number
 // @access Private
@@ -56,4 +72,4 @@ const verifyPhone = async (req: Request, res: Response) => {
   }
 };
 
-export { sendVerificationSMS, verifyPhone };
+export { getUserData, sendVerificationSMS, verifyPhone };

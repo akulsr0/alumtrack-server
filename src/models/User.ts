@@ -44,6 +44,11 @@ const userSchema: Schema = new Schema({
     required: true,
   },
   projects: [{ type: Types.ObjectId, ref: 'project' }],
+  connections: {
+    requests_received: [{ type: Types.ObjectId, ref: 'user' }],
+    requests_sent: [{ type: Types.ObjectId, ref: 'user' }],
+    users: [{ type: Types.ObjectId, ref: 'user' }],
+  },
   joined: {
     type: Date,
     default: new Date(),
